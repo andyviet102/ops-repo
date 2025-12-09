@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argoflow-go-demo
+  name: ops-repo
   namespace: argocd-visualizer
   labels:
-    app: argoflow-go-demo
+    app: ops-repo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: argoflow-go-demo
+      app: ops-repo
   template:
     metadata:
       labels:
-        app: argoflow-go-demo
+        app: ops-repo
     spec:
       containers:
-      - name: argoflow-go-demo
-        image: ghcr.io/andyviet102/argoflow-go-demo:latest
+      - name: ops-repo
+        image: ghcr.io/andyviet102/ops-repo:latest
         ports:
         - containerPort: 8080
         env:
@@ -46,11 +46,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: argoflow-go-demo-svc
+  name: ops-repo-svc
   namespace: argocd-visualizer
 spec:
   selector:
-    app: argoflow-go-demo
+    app: ops-repo
   ports:
   - protocol: TCP
     port: 80

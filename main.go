@@ -16,7 +16,7 @@ func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		hostname, _ := os.Hostname()
-		fmt.Fprintf(w, "Hello from ArgoFlow Go Demo!\nRunning on Pod: %s\nTime: %s", hostname, time.Now().Format(time.RFC3339))
+		fmt.Fprintf(w, "Hello from Ops Repo Demo (AndyViet)!\nRunning on Pod: %s\nTime: %s", hostname, time.Now().Format(time.RFC3339))
 	})
 
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {

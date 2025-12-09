@@ -6,7 +6,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ghcr.io/your-username/argoflow-go-demo
+  # Correctly configured for andyviet102
+  IMAGE_NAME: ghcr.io/andyviet102/ops-repo
 
 jobs:
   build-and-push:

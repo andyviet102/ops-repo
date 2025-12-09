@@ -1,3 +1,3 @@
-module github.com/your-username/argoflow-go-demo
+module github.com/andyviet102/ops-repo
 
 go 1.22
