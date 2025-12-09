@@ -19,7 +19,7 @@ spec:
       - name: ghcr-secret
       containers:
       - name: ops-repo
-        image: ghcr.io/andyviet102/ops-repo:64620483e81f92e743ef1670ab598c6ead3cbece
+        image: ghcr.io/andyviet102/ops-repo:918226b223e8aa86f9b71958853ade3a8e385abd
         ports:
         - containerPort: 8080
         env:
