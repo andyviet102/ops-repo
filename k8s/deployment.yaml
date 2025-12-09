@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: ops-repo
-        image: ghcr.io/andyviet102/ops-repo:latest
+        image: ghcr.io/andyviet102/ops-repo:64620483e81f92e743ef1670ab598c6ead3cbece
         ports:
         - containerPort: 8080
         env:
