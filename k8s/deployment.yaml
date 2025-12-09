@@ -1,46 +1,58 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argoflow-dashboard
+  name: argoflow-go-demo
   namespace: argocd-visualizer
   labels:
-    app: argoflow-dashboard
+    app: argoflow-go-demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: argoflow-dashboard
+      app: argoflow-go-demo
   template:
     metadata:
       labels:
-        app: argoflow-dashboard
+        app: argoflow-go-demo
     spec:
       containers:
-      - name: argoflow-dashboard
-        image: ghcr.io/andyviet102/argoflow-dashboard:latest
+      - name: argoflow-go-demo
+        image: ghcr.io/andyviet102/argoflow-go-demo:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         env:
-        - name: API_KEY
-          value: "AIzaSyBDgobUkEFZi5lHyL7SAilj76FDknTHqyc" # Recommended: Use K8s Secrets
+        - name: PORT
+          value: "8080"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
         resources:
           requests:
-            cpu: "100m"
-            memory: "128Mi"
+            cpu: "50m"
+            memory: "64Mi"
           limits:
-            cpu: "500m"
-            memory: "256Mi"
+            cpu: "250m"
+            memory: "128Mi"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: argoflow-dashboard-svc
+  name: argoflow-go-demo-svc
   namespace: argocd-visualizer
 spec:
   selector:
-    app: argoflow-dashboard
+    app: argoflow-go-demo
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 8080
   type: LoadBalancer

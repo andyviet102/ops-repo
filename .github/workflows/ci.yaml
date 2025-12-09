@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Deploy Go App
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ghcr.io/andyviet102/argoflow-dashboard
+  IMAGE_NAME: ghcr.io/your-username/argoflow-go-demo
 
 jobs:
   build-and-push:
@@ -18,6 +18,14 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.22'
+
+    - name: Build Go Binary (Test)
+      run: go build -v ./...
 
     - name: Log in to GHCR
       uses: docker/login-action@v2

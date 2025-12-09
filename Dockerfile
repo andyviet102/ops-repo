@@ -1,23 +1,27 @@
 # Stage 1: Build
-FROM node:20-alpine AS builder
+FROM golang:1.22-alpine AS builder
 
 WORKDIR /app
 
-COPY package*.json ./
+# Copy go mod and sum files
+COPY go.mod ./
+# COPY go.sum ./ 
+# (Uncomment above if you have dependencies)
 
-# SỬA LẠI: Dùng npm install để nó tự xử lý vụ thiếu file lock
-RUN npm install
+RUN go mod download
 
 COPY . .
 
-# Build project
-RUN npm run build
+# Build the Go app
+RUN CGO_ENABLED=0 GOOS=linux go build -o server main.go
 
-# Stage 2: Serve
-FROM nginx:alpine
+# Stage 2: Run
+FROM alpine:latest  
 
-COPY --from=builder /app/dist /usr/share/nginx/html
+WORKDIR /root/
 
-EXPOSE 80
+COPY --from=builder /app/server .
 
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 8080
+
+CMD ["./server"]
