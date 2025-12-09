@@ -17,12 +17,12 @@ spec:
     spec:
       containers:
       - name: argoflow-dashboard
-        image: ghcr.io/your-username/argoflow-dashboard:latest
+        image: ghcr.io/andyviet102/argoflow-dashboard:latest
         ports:
         - containerPort: 80
         env:
         - name: API_KEY
-          value: "YOUR_GEMINI_API_KEY_HERE" # Recommended: Use K8s Secrets
+          value: "AIzaSyBDgobUkEFZi5lHyL7SAilj76FDknTHqyc" # Recommended: Use K8s Secrets
         resources:
           requests:
             cpu: "100m"

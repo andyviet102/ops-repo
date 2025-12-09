@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ghcr.io/your-username/argoflow-dashboard
+  IMAGE_NAME: ghcr.io/andyviet102/argoflow-dashboard
 
 jobs:
   build-and-push:

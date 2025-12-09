@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/your-username/argoflow-dashboard
+    repoURL: https://github.com/andyviet102/ops-repo.git
     targetRevision: main
-    path: k8s
+    path: main
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd-visualizer
