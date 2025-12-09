@@ -52,8 +52,8 @@ jobs:
         
         # Commit changes
         if [[ -n $(git status -s) ]]; then
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "andyviet102"
+          git config user.email "andyviet102@gmail.com"
           git add deployment.yaml
           git commit -m "Update image tag to ${{ github.sha }}"
           git push
