@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argoflow-dashboard
+  namespace: argocd-visualizer
+  labels:
+    app: argoflow-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: argoflow-dashboard
+  template:
+    metadata:
+      labels:
+        app: argoflow-dashboard
+    spec:
+      containers:
+      - name: argoflow-dashboard
+        image: ghcr.io/your-username/argoflow-dashboard:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: API_KEY
+          value: "YOUR_GEMINI_API_KEY_HERE" # Recommended: Use K8s Secrets
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: argoflow-dashboard-svc
+  namespace: argocd-visualizer
+spec:
+  selector:
+    app: argoflow-dashboard
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
